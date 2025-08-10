@@ -69,7 +69,6 @@ export class AuthService {
   }
 }
 
-// Safely register the service with the hybridApp module
 const app = angular.module('hybridApp');
 if (app) {
   app.service('authService', AuthService);

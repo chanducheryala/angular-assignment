@@ -91,9 +91,6 @@ export class AuthController {
 
 
 
-  /**
-   * Handle user logout
-   */
   private logout(): void {
     this.authService.logout();
     this.$scope.currentUser = null;
@@ -110,7 +107,6 @@ export class AuthController {
 
 }
 
-// Safely register the controller with the hybridApp module
 const app = angular.module('hybridApp');
 if (app) {
   app.controller('AuthController', AuthController);
