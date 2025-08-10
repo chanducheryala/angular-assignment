@@ -141,7 +141,6 @@ export class LoginNewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Clean up if needed
   }
 
   async onSubmit(): Promise<void> {
@@ -157,30 +156,24 @@ export class LoginNewComponent implements OnInit, OnDestroy {
         throw new Error('Authentication service not available');
       }
 
-      // Handle AngularJS promise properly
       const loginPromise = this.authService.login(this.username, this.password);
       
-      // Check if it's an AngularJS promise ($promise property exists)
       const result = loginPromise.$promise 
         ? await loginPromise.$promise 
         : await Promise.resolve(loginPromise);
       
       if (result) {
-        // Store only the necessary data in localStorage
         if (isPlatformBrowser(this.platformId)) {
           localStorage.setItem('authToken', result.token || 'dummy-token');
           
-          // Create a clean user object without circular references
           const userData = {
             username: result.username || this.username,
             email: result.email,
-            // Add other non-circular properties you need
           };
           
           localStorage.setItem('userData', JSON.stringify(userData));
         }
         
-        // Navigate to the dashboard or return URL
         const returnUrl = this.router.parseUrl(this.router.url).queryParams['returnUrl'] || '/dashboard';
         this.router.navigateByUrl(returnUrl);
       } else {

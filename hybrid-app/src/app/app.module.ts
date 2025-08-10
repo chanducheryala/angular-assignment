@@ -13,10 +13,8 @@ import { provideBrowserGlobalErrorListeners } from '@angular/core';
 import { UpgradeModule, downgradeComponent, setAngularJSGlobal } from '@angular/upgrade/static';
 import * as angular from 'angular';
 
-// Factory function to initialize AngularJS services
 export function initializeAngularJS(upgrade: UpgradeModule) {
   return () => {
-    // Bootstrap AngularJS
     upgrade.bootstrap(document.body, ['hybridApp'], { strictDi: true });
   };
 }
@@ -53,7 +51,6 @@ export class AppModule implements DoBootstrap {
   }
 
   ngDoBootstrap(appRef: ApplicationRef) {
-    // Angular is bootstrapped by the APP_INITIALIZER
     appRef.bootstrap(AppComponent);
   }
 }
